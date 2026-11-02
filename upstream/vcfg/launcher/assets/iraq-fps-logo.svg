@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 512 512">
+<rect width="512" height="512" rx="72" fill="#080d18"/>
+<path d="M0 0h512v24H0z" fill="#d71935"/><path d="M0 488h512v24H0z" fill="#168a45"/>
+<g font-family="Arial,sans-serif" font-weight="900" text-anchor="middle">
+<text x="256" y="218" font-size="94" fill="#f5f7fb">IRAQ</text>
+<text x="256" y="326" font-size="112" fill="#f02b43">FPS</text>
+<text x="256" y="390" font-size="27" letter-spacing="5" fill="#c7d5e8">MCHAWE</text>
+</g></svg>
