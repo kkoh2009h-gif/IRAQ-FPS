@@ -21,7 +21,7 @@ button.action{width:100%;padding:14px;border-radius:10px;border:1px solid var(--
 @media(max-width:800px){main{grid-template-columns:1fr}.details{grid-template-columns:1fr}nav{display:flex;overflow:auto}nav button{min-width:130px;text-align:center}}
 </style></head>
 <body>
-<header><div><div class="brand">IRAQ <span>FPS</span></div><div class="sub">Frame Generation & Performance Toolkit · By MCHAWE</div></div><div class="pill">PS4 Homebrew · GoldHEN 9.00 · Prototype v0.1</div></header>
+<header><div><div class="brand">IRAQ <span>FPS</span></div><div class="sub">واجهة IRAQ FPS التجريبية · PS4 GoldHEN</div></div><div class="pill">CI Build v2.36 · اختبار الجهاز pending</div></header>
 <main><nav><button class="active">⌂ الرئيسية</button><button>🎮 الألعاب</button><button>⚙ إعدادات الأداء</button><button>▣ إضافات وأدوات</button><button>ⓘ معلومات الجهاز</button></nav>
 <section>
 <div class="panel"><h2>🎮 الألعاب المثبتة — نموذج واجهة</h2><div class="games"><div class="game selected">⚽<br>eFootball</div><div class="game">🚗<br>Grand Theft Auto V</div><div class="game">🤠<br>Red Dead Redemption 2</div><div class="game">⚔<br>God of War</div><div class="game">☠<br>The Last of Us</div></div></div>
@@ -30,7 +30,7 @@ button.action{width:100%;padding:14px;border-radius:10px;border:1px solid var(--
 <div class="setting"><span>وضع تحسين الاستجابة</span><div class="switch on"></div></div>
 <div class="setting"><span>تحسين وضوح الصورة</span><div class="switch"></div></div>
 <div class="setting"><span>إعدادات توافق اللعبة</span><span>›</span></div>
-<button class="action" onclick="alert('هذه واجهة نموذجية فقط؛ لم يتم تطبيق أي تعديل على اللعبة.')">تطبيق الإعدادات (عرض تجريبي)</button>
-<div class="note">تنبيه: هذا نموذج واجهة فقط. لا يغيّر FPS ولا يفعّل Frame Generation فعلياً.</div>
+<button class="action" onclick="alert('واجهة عرض فقط؛ الإعدادات لا تُطبّق على اللعبة.')">تطبيق الإعدادات (عرض تجريبي)</button>
+<div class="note">تنبيه: هذه واجهة ويب تجريبية. لا تتحكم بالـ PS4 ولا تفعّل Frame Generation فعلياً.</div>
 </div><div class="panel"><h2>معلومات الأداء</h2><div class="setting"><span>الدقة</span><b>حسب اللعبة</b></div><div class="setting"><span>معدل الإطارات الأصلي</span><b>غير مقروء</b></div><div class="setting"><span>توافق Frame Generation</span><b style="color:#ffc857">قيد التطوير</b></div><p class="note">التحكم الفعلي بأداء الألعاب يتطلب تطوير مكوّن PS4 أصلي واختباره على الجهاز، ولا يمكن ضمان 60 FPS لكل لعبة.</p></div></div>
-</section></main></body></html>
+</section></main><script>\n// Prototype interactions only; no console or game settings are changed.\ndocument.querySelectorAll('.game').forEach(el=>el.addEventListener('click',()=>{document.querySelectorAll('.game').forEach(x=>x.classList.remove('selected'));el.classList.add('selected')}));\ndocument.querySelectorAll('.switch').forEach(el=>{el.setAttribute('role','switch');el.setAttribute('tabindex','0');el.setAttribute('aria-checked',el.classList.contains('on')?'true':'false');const toggle=()=>{el.classList.toggle('on');el.setAttribute('aria-checked',el.classList.contains('on')?'true':'false')};el.addEventListener('click',toggle);el.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();toggle()}})});\ndocument.querySelectorAll('nav button').forEach(el=>el.addEventListener('click',()=>{document.querySelectorAll('nav button').forEach(x=>x.classList.remove('active'));el.classList.add('active');document.querySelector('.panel h2').textContent=el.textContent.trim()+' — نموذج واجهة'}));\n</script></body></html>
