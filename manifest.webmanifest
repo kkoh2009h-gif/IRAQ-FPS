@@ -1,0 +1,12 @@
+{
+  "name":"IRAQ FPS Companion",
+  "short_name":"IRAQ FPS",
+  "description":"لوحة إدارة ملفات إعداد IRAQ FPS",
+  "lang":"ar",
+  "dir":"rtl",
+  "start_url":"./",
+  "scope":"./",
+  "display":"standalone",
+  "background_color":"#07101d",
+  "theme_color":"#07101d"
+}
