@@ -105,7 +105,7 @@ static int draw_header(Canvas *c, App *a)
     int lw = text_width(&f->logo, "IRAQ FPS", -6);
     int ph = cap + 17 + 12;
     fill_rect(c, M, top, lw + 56, ph, RED);
-    draw_text(c, &f->logo, M + 28, top + 17 + cap, "VCFG", INK, -6);
+    draw_text(c, &f->logo, M + 28, top + 17 + cap, "IRAQ FPS", INK, -6);
     int bottom = top + ph;
     if (a->version[0]) { char v[24] = "V"; cat(v, a->version); draw_text(c, &f->mono, M + lw + 56 + 34, bottom - 82, v, th.dim, 1); }
     draw_text(c, &f->mono, M + lw + 56 + 34, bottom - 46, "IRAQI HOMEbrew", th.ink, 1);
@@ -289,7 +289,7 @@ static void draw_card(Canvas *c, App *a, Game *g, int idx, int x, int y, int w, 
     fill_rect(c, x + p, ry, isz, 4, bar_col);
     char lab[48] = "";
     if (!g->installed) cat(lab, "NOT INSTALLED");
-    else if (a->turned_off) cat(lab, "VCFG TURNED OFF");
+    else if (a->turned_off) cat(lab, "IRAQ FPS TURNED OFF");
     else if (g->testing) cat(lab, "UNSTABLE, OFF");
     else if (g->experimental) cat(lab, g->s.fg ? "EXPERIMENTAL" : "EXPERIMENTAL, OFF");
     else if (!g->s.fg) cat(lab, "FG OFF");
