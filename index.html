@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>IRAQ FPS | MCHAWE</title>
+<style>
+:root{--bg:#050b16;--panel:#0b1729;--line:#183b62;--red:#ff263d;--green:#13e66b;--blue:#168cff}
+*{box-sizing:border-box}body{margin:0;background:radial-gradient(ellipse at top,#142b4a,#050b16 65%);color:#f5f8ff;font-family:Arial,sans-serif}
+header{padding:26px 5vw 18px;border-bottom:1px solid #17304d;display:flex;justify-content:space-between;align-items:center;gap:20px;flex-wrap:wrap}
+.brand{font-size:clamp(30px,5vw,54px);font-weight:900;letter-spacing:1px;direction:ltr}.brand span{color:var(--red)}.sub{color:#a9bbd2;margin-top:6px}
+.pill{border:1px solid #244566;border-radius:20px;padding:9px 14px;color:#c7d7ec}
+main{display:grid;grid-template-columns:220px 1fr;gap:18px;padding:22px 3vw}
+nav,.panel{background:#081426;border:1px solid var(--line);border-radius:16px;padding:16px}
+nav button{display:block;width:100%;padding:14px;margin:7px 0;background:transparent;border:1px solid transparent;color:#dce8f7;text-align:right;border-radius:10px;font-size:16px}nav button.active{background:linear-gradient(90deg,#6b0718,#190e1b);border-color:var(--red)}
+h2{margin:0 0 16px;font-size:22px}.games{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:12px}
+.game{min-height:105px;border:1px solid #24415e;border-radius:12px;background:linear-gradient(135deg,#152a47,#070d18);display:grid;place-items:center;text-align:center;padding:12px;font-weight:bold}.game.selected{border:2px solid var(--red);box-shadow:0 0 18px #ff263d55}
+.details{display:grid;grid-template-columns:1.4fr 1fr;gap:14px;margin-top:18px}.setting{display:flex;justify-content:space-between;gap:12px;padding:13px 8px;border-bottom:1px solid #142a43}
+.switch{width:42px;height:23px;border-radius:20px;background:#35445a;position:relative;flex-shrink:0}.switch:after{content:"";position:absolute;width:17px;height:17px;top:3px;right:3px;background:white;border-radius:50%}.switch.on{background:var(--green)}.switch.on:after{right:22px}
+button.action{width:100%;padding:14px;border-radius:10px;border:1px solid var(--red);background:linear-gradient(90deg,#7c1020,#250d18);color:white;font-size:17px;font-weight:bold;margin-top:10px}
+.note{color:#9fb1c7;font-size:13px;line-height:1.6;margin-top:18px}
+@media(max-width:800px){main{grid-template-columns:1fr}.details{grid-template-columns:1fr}nav{display:flex;overflow:auto}nav button{min-width:130px;text-align:center}}
+</style></head>
+<body>
+<header><div><div class="brand">IRAQ <span>FPS</span></div><div class="sub">Frame Generation & Performance Toolkit · By MCHAWE</div></div><div class="pill">PS4 Homebrew · GoldHEN 9.00 · Prototype v0.1</div></header>
+<main><nav><button class="active">⌂ الرئيسية</button><button>🎮 الألعاب</button><button>⚙ إعدادات الأداء</button><button>▣ إضافات وأدوات</button><button>ⓘ معلومات الجهاز</button></nav>
+<section>
+<div class="panel"><h2>🎮 الألعاب المثبتة — نموذج واجهة</h2><div class="games"><div class="game selected">⚽<br>eFootball</div><div class="game">🚗<br>Grand Theft Auto V</div><div class="game">🤠<br>Red Dead Redemption 2</div><div class="game">⚔<br>God of War</div><div class="game">☠<br>The Last of Us</div></div></div>
+<div class="details"><div class="panel"><h2>إعدادات الأداء</h2>
+<div class="setting"><span>Frame Generation (واجهة تجريبية)</span><div class="switch on"></div></div>
+<div class="setting"><span>وضع تحسين الاستجابة</span><div class="switch on"></div></div>
+<div class="setting"><span>تحسين وضوح الصورة</span><div class="switch"></div></div>
+<div class="setting"><span>إعدادات توافق اللعبة</span><span>›</span></div>
+<button class="action" onclick="alert('هذه واجهة نموذجية فقط؛ لم يتم تطبيق أي تعديل على اللعبة.')">تطبيق الإعدادات (عرض تجريبي)</button>
+<div class="note">تنبيه: هذا نموذج واجهة فقط. لا يغيّر FPS ولا يفعّل Frame Generation فعلياً.</div>
+</div><div class="panel"><h2>معلومات الأداء</h2><div class="setting"><span>الدقة</span><b>حسب اللعبة</b></div><div class="setting"><span>معدل الإطارات الأصلي</span><b>غير مقروء</b></div><div class="setting"><span>توافق Frame Generation</span><b style="color:#ffc857">قيد التطوير</b></div><p class="note">التحكم الفعلي بأداء الألعاب يتطلب تطوير مكوّن PS4 أصلي واختباره على الجهاز، ولا يمكن ضمان 60 FPS لكل لعبة.</p></div></div>
+</section></main></body></html>
