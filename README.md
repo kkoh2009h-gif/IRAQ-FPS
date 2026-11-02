@@ -1,24 +1,38 @@
 # IRAQ FPS
 
-**IRAQ FPS** is a community rebrand/derivative project based on the VCFG PS4 frame-generation homebrew project.
+**IRAQ FPS** is a community-branded PS4 homebrew launcher/build project based on the VCFG frame-generation project.
 
-## Current status
-- Public web UI prototype: https://kkoh2009h-gif.github.io/IRAQ-FPS/
-- Imported VCFG launcher source: upstream/vcfg/launcher/src/
-- Branding pass applied to the launcher header.
-- Native PS4 PKG build and runtime integration are **not yet validated**. The separate prototype build workflow is experimental and should not be treated as a confirmed working PKG pipeline.
+## Build status
+- **CI build:** successful for upstream VCFG **v2.36**.
+- **Artifact:** `IRAQ-FPS-build-2.36` (GitHub Actions artifact; contains the PKG and plugin binaries).
+- **Package:** `IRAQ-FPS_v2.36.pkg`.
+- **Runtime status:** not yet tested on a physical PS4. A successful CI build confirms compilation and packaging, not in-game compatibility or performance gains.
+- **Web UI:** prototype only; settings shown on the site do not change console/game settings.
 
-## Upstream project and license
-- Upstream: https://github.com/Melnikoff07/vcfg
-- License: MIT; see upstream/vcfg/LICENSE
-- Upstream documentation and compatibility information remain authoritative for the frame-generation engine.
-- This project is independent and is not affiliated with Sony or game publishers.
+## Download the build
+Open [GitHub Actions](https://github.com/kkoh2009h-gif/IRAQ-FPS/actions/workflows/build-ps4.yml), select the latest successful **Build IRAQ FPS PS4 PKG** run, and download the `IRAQ-FPS-build-2.36` artifact. Extract the ZIP to access the PKG and PRX files.
 
-## Important
-Frame generation depends on the upstream GoldHEN plugin and game-specific compatibility. Rebranding the launcher does not itself implement or improve FPS. Do not install experimental plugins on a console without backups and understanding the risk.
+## Upstream and license
+- Upstream project: https://github.com/Melnikoff07/vcfg
+- Pinned source: VCFG v2.36
+- License: MIT; upstream license and attribution are retained in this repository.
+- This is an independent community project and is not affiliated with Sony or game publishers.
 
-## Planned work
-1. Finish syncing and validating the upstream v2.36 build layout and dependencies with attribution.
-2. Rebrand launcher title, icon, package metadata, and menus as IRAQ FPS.
-3. Build a reproducible PS4 PKG in CI using the upstream-supported toolchain.
-4. Test on PS4 GoldHEN 9.00 before claiming compatibility.
+## Important compatibility notes
+- Frame generation and performance behavior depend on the upstream plugin, GoldHEN, and game-specific compatibility.
+- The PKG is the launcher package; `.prx` files are plugin binaries and are not installed as PKG files.
+- Do not load multiple copies of the plugin at once.
+- Back up console data before testing. Stop if a game or system becomes unstable.
+- Do not assume a universal FPS increase or 60 FPS support.
+
+## Next milestones
+1. Complete branding review (including launcher icon and package metadata).
+2. Test installation and launcher startup on PS4 with GoldHEN 9.00.
+3. Confirm the correct PRX loading path and configuration on-device.
+4. Test supported games individually and document results, crashes, and limitations.
+5. Only then publish a release marked as hardware-tested.
+
+## Project links
+- Web prototype: https://kkoh2009h-gif.github.io/IRAQ-FPS/
+- Source repository: https://github.com/kkoh2009h-gif/IRAQ-FPS
+- Build workflow: https://github.com/kkoh2009h-gif/IRAQ-FPS/actions/workflows/build-ps4.yml
