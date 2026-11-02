@@ -22,7 +22,7 @@ jobs:
         run: |
           git clone --depth 1 --branch v2.36 https://github.com/Melnikoff07/vcfg.git vcfg-src
 
-      - name: Apply IRAQ FPS launcher branding
+      - name: Apply IRAQ FPS launcher and package branding
         run: |
           python3 - <<'PY'
           from pathlib import Path
@@ -37,6 +37,14 @@ jobs:
               for old, new in replacements.items():
                   s = s.replace(old, new)
               p.write_text(s, encoding="utf-8")
+
+          # Upstream Linux packaging script embeds the launcher title in param.sfo.
+          p = Path("vcfg-src/tools/docker-build/build_inner.sh")
+          s = p.read_text(encoding="utf-8")
+          old = "TITLE Utf8 128 VCFG"
+          if old not in s:
+              raise SystemExit("Could not locate upstream package title field; stop rather than build an unbranded PKG.")
+          p.write_text(s.replace(old, "TITLE Utf8 128 IRAQ FPS"), encoding="utf-8")
           PY
 
       - name: Prepare reproducible build dependencies
@@ -47,15 +55,15 @@ jobs:
       - name: Build plugins and PKG
         run: |
           bash vcfg-src/tools/docker-build/build_all.sh vcfg-src "$PWD/out" 2.36 --run-tests
+          cp out/VCFG_v2.36.pkg out/IRAQ-FPS_v2.36.pkg
 
       - name: Upload build output
         uses: actions/upload-artifact@v4
         with:
           name: IRAQ-FPS-build-2.36
           path: |
-            out/VCFG_v2.36.pkg
+            out/IRAQ-FPS_v2.36.pkg
             out/vcfg.prx
             out/vcfg_classic.prx
             out/build.log
-            out/shaders-regen.txt
-          if-no-files-found: warn
+          if-no-files-found: error
