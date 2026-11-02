@@ -11,8 +11,13 @@ Last source snapshot checked: **VCFG v2.36** (upstream main).
 - ELF/shader validation helper under `upstream/vcfg/tools/elf_arrays.py`
 - Upstream MIT license and attribution
 
+## Build workflow
+- GitHub Actions now checks out the pinned upstream v2.36 source and uses the upstream Docker build scripts (including pinned OpenOrbis/GoldHEN dependencies and regression checks).
+- The workflow applies a limited launcher string-branding pass. Package metadata/icon branding still needs a complete review.
+- The latest workflow run has not yet been confirmed successful; check Actions before treating its artifact as usable.
+
 ## Not yet release-ready
-- The upstream build environment/dependencies have not been fully reproduced in this repository's GitHub Actions.
+- The upstream build environment is provisioned in CI from the upstream Docker scripts; this has not yet been confirmed end-to-end for this fork.
 - The experimental PKG workflow in the project has not been validated against the upstream v2.36 build scripts.
 - No IRAQ FPS PKG has been verified on a PS4; do not treat workflow artifacts as install-ready.
 - Launcher branding and package metadata still need a complete pass, followed by a clean build and hardware testing.
