@@ -13,14 +13,14 @@ Last source snapshot checked: **VCFG v2.36** (upstream main).
 
 ## Build workflow
 - GitHub Actions now checks out the pinned upstream v2.36 source and uses the upstream Docker build scripts (including pinned OpenOrbis/GoldHEN dependencies and regression checks).
-- The workflow applies a limited launcher string-branding pass. Package metadata/icon branding still needs a complete review.
+- The workflow applies launcher string branding and sets the package title to IRAQ FPS in `param.sfo`; the upstream package/content ID is intentionally retained for now. The icon remains upstream-branded and needs a separate asset review.
 - The latest workflow run has not yet been confirmed successful; check Actions before treating its artifact as usable.
 
 ## Not yet release-ready
 - The upstream build environment is provisioned in CI from the upstream Docker scripts; this has not yet been confirmed end-to-end for this fork.
-- The experimental PKG workflow in the project has not been validated against the upstream v2.36 build scripts.
+- The workflow was corrected to use the upstream v2.36 output filename and publish it as `IRAQ-FPS_v2.36.pkg`; a successful run is still required to validate it end-to-end.
 - No IRAQ FPS PKG has been verified on a PS4; do not treat workflow artifacts as install-ready.
-- Launcher branding and package metadata still need a complete pass, followed by a clean build and hardware testing.
+- Launcher icon branding still needs a complete pass, followed by a clean build and hardware testing.
 
 ## Safe next build sequence
 1. Configure the OpenOrbis toolchain and GoldHEN Plugins SDK as required by upstream.
