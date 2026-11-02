@@ -1,34 +1,61 @@
 name: Build IRAQ FPS PS4 PKG
+
 on:
+  workflow_dispatch:
   push:
     branches: [main]
-  workflow_dispatch:
+    paths:
+      - "upstream/vcfg/**"
+      - ".github/workflows/build-ps4.yml"
+
 permissions:
   contents: read
+
 jobs:
   build:
     runs-on: ubuntu-22.04
     steps:
-      - uses: actions/checkout@v4
-      - name: Install dependencies
-        run: sudo apt-get update && sudo apt-get install -y make python3 python3-pil curl clang lld
-      - name: Install OpenOrbis toolchain
+      - name: Checkout IRAQ FPS
+        uses: actions/checkout@v4
+
+      - name: Checkout pinned VCFG source
         run: |
-          curl -L https://github.com/OpenOrbis/OpenOrbis-PS4-Toolchain/releases/download/v0.5.4/toolchain-llvm-18.tar.gz -o oo.tar.gz
-          mkdir -p "$HOME/oo"
-          tar -xzf oo.tar.gz -C "$HOME/oo"
-          echo "OO_PS4_TOOLCHAIN=$(dirname "$(find "$HOME/oo" -name link.x | head -1)")" >> "$GITHUB_ENV"
-      - name: Prepare package assets
+          git clone --depth 1 --branch v2.36 https://github.com/Melnikoff07/vcfg.git vcfg-src
+
+      - name: Apply IRAQ FPS launcher branding
         run: |
-          mkdir -p sce_sys/about
-          python3 tools/make_icon.py
-          cp "$(find "$OO_PS4_TOOLCHAIN" -name right.sprx | head -1)" sce_sys/about/right.sprx
-      - name: Build PKG
-        run: make
-      - uses: actions/upload-artifact@v4
+          python3 - <<'PY'
+          from pathlib import Path
+          root = Path("vcfg-src/launcher/src")
+          replacements = {
+              '"VCFG"': '"IRAQ FPS"',
+              '"vcfg"': '"iraq-fps"',
+          }
+          for name in ("app.c", "ui.c"):
+              p = root / name
+              s = p.read_text(encoding="utf-8")
+              for old, new in replacements.items():
+                  s = s.replace(old, new)
+              p.write_text(s, encoding="utf-8")
+          PY
+
+      - name: Prepare reproducible build dependencies
+        run: |
+          bash vcfg-src/tools/docker-build/fetch-deps.sh
+          bash vcfg-src/tools/docker-build/build-images.sh
+
+      - name: Build plugins and PKG
+        run: |
+          bash vcfg-src/tools/docker-build/build_all.sh vcfg-src "$PWD/out" 2.36 --run-tests
+
+      - name: Upload build output
+        uses: actions/upload-artifact@v4
         with:
-          name: IRAQ-FPS-PS4-PKG
+          name: IRAQ-FPS-build-2.36
           path: |
-            *.pkg
-            eboot.bin
-          if-no-files-found: error
+            out/VCFG_v2.36.pkg
+            out/vcfg.prx
+            out/vcfg_classic.prx
+            out/build.log
+            out/shaders-regen.txt
+          if-no-files-found: warn
