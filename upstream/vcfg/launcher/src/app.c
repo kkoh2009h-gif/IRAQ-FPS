@@ -102,13 +102,13 @@ static int draw_header(Canvas *c, App *a)
     Theme th = theme_of(a);
     Fonts *f = a->f;
     int top = 58, cap = (int)(f->logo.px * 0.727f);
-    int lw = text_width(&f->logo, "VCFG", -6);
+    int lw = text_width(&f->logo, "IRAQ FPS", -6);
     int ph = cap + 17 + 12;
     fill_rect(c, M, top, lw + 56, ph, RED);
     draw_text(c, &f->logo, M + 28, top + 17 + cap, "VCFG", INK, -6);
     int bottom = top + ph;
     if (a->version[0]) { char v[24] = "V"; cat(v, a->version); draw_text(c, &f->mono, M + lw + 56 + 34, bottom - 82, v, th.dim, 1); }
-    draw_text(c, &f->mono, M + lw + 56 + 34, bottom - 46, "VIBE CODED", th.ink, 1);
+    draw_text(c, &f->mono, M + lw + 56 + 34, bottom - 46, "IRAQI HOMEbrew", th.ink, 1);
     draw_text(c, &f->mono, M + lw + 56 + 34, bottom - 10, "FRAME GENERATOR", th.ink, 1);
     static const char *tabs[TAB_COUNT] = { "01 GAMES", "02 DEFAULTS", "03 OVERLAY", "04 PLUGIN", "05 DEV" };
     int x = c->w - M;
@@ -123,7 +123,7 @@ static int draw_header(Canvas *c, App *a)
         int by = bottom + 8, bh = 40, bw = c->w - 2 * M;
         fill_round(c, M, by, bw, bh, 10, RED);
         draw_button(c, BTN_CROSS, M + 26, by + bh / 2, 22, YEL);
-        draw_text(c, &f->mono, M + 52, by + 28, "VCFG IS TURNED OFF - PRESS CROSS ON 04 PLUGIN TO ENABLE", CREAM, 1);
+        draw_text(c, &f->mono, M + 52, by + 28, "IRAQ FPS OFF - PRESS CROSS ON 04 PLUGIN TO ENABLE", CREAM, 1);
     }
     return bottom;
 }
