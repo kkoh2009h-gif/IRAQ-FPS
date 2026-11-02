@@ -18,7 +18,7 @@
 Frame generation depends on the upstream GoldHEN plugin and game-specific compatibility. Rebranding the launcher does not itself implement or improve FPS. Do not install experimental plugins on a console without backups and understanding the risk.
 
 ## Planned work
-1. Integrate the complete upstream build layout and dependencies with attribution.
+1. Finish syncing and validating the upstream v2.36 build layout and dependencies with attribution.
 2. Rebrand launcher title, icon, package metadata, and menus as IRAQ FPS.
 3. Build a reproducible PS4 PKG in CI using the upstream-supported toolchain.
 4. Test on PS4 GoldHEN 9.00 before claiming compatibility.
