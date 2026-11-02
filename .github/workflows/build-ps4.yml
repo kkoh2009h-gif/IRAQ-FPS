@@ -14,6 +14,7 @@ permissions:
 jobs:
   build:
     runs-on: ubuntu-22.04
+    timeout-minutes: 45
     steps:
       - name: Checkout IRAQ FPS
         uses: actions/checkout@v4
@@ -21,6 +22,7 @@ jobs:
       - name: Checkout pinned VCFG source
         run: |
           git clone --depth 1 --branch v2.36 https://github.com/Melnikoff07/vcfg.git vcfg-src
+          git -C vcfg-src rev-parse HEAD | tee upstream-commit.txt
 
       - name: Apply IRAQ FPS launcher and package branding
         run: |
@@ -38,7 +40,6 @@ jobs:
                   s = s.replace(old, new)
               p.write_text(s, encoding="utf-8")
 
-          # Upstream Linux packaging script embeds the launcher title in param.sfo.
           p = Path("vcfg-src/tools/docker-build/build_inner.sh")
           s = p.read_text(encoding="utf-8")
           old = "TITLE Utf8 128 VCFG"
@@ -57,6 +58,26 @@ jobs:
           bash vcfg-src/tools/docker-build/build_all.sh vcfg-src "$PWD/out" 2.36 --run-tests
           cp out/VCFG_v2.36.pkg out/IRAQ-FPS_v2.36.pkg
 
+      - name: Validate package outputs and create checksums
+        run: |
+          set -euo pipefail
+          test -s out/IRAQ-FPS_v2.36.pkg
+          test -s out/vcfg.prx
+          test -s out/vcfg_classic.prx
+          test -s out/build.log
+          mkdir -p out/release-info
+          cp upstream-commit.txt out/release-info/
+          cat > out/release-info/BUILD-INFO.txt <<'EOF'
+          IRAQ FPS — PS4 package build
+          Upstream: VCFG v2.36 (MIT; attribution retained)
+          Package: IRAQ-FPS_v2.36.pkg
+          Note: CI build/packaging validation only. Physical PS4 installation,
+          GoldHEN 9.00 loading, game compatibility, and performance are not verified.
+          PRX files are plugin binaries, not installable PKG packages.
+          EOF
+          sha256sum out/IRAQ-FPS_v2.36.pkg out/vcfg.prx out/vcfg_classic.prx > out/SHA256SUMS.txt
+          ls -lh out/IRAQ-FPS_v2.36.pkg out/vcfg.prx out/vcfg_classic.prx out/SHA256SUMS.txt
+
       - name: Upload build output
         uses: actions/upload-artifact@v4
         with:
@@ -66,4 +87,8 @@ jobs:
             out/vcfg.prx
             out/vcfg_classic.prx
             out/build.log
+            out/SHA256SUMS.txt
+            out/release-info/BUILD-INFO.txt
+            out/release-info/upstream-commit.txt
           if-no-files-found: error
+          retention-days: 30
